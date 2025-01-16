@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option csharp_namespace = "Vaja6";
+
+package greet;
+
+service Voznik{
+	//create
+	rpc CreateVoznik(CreateVoznikRequest) returns (CreateVoznikResponse) {};
+
+	//read single
+	rpc ReadVoznik(ReadVoznikRequest) returns (ReadVoznikResponse) {};
+
+	//read list
+	rpc ListVoznik(GetAllRequest) returns (GetAllRequestResponse) {};
+
+	//update
+	rpc UpdateVoznik(UpdateVoznikRequest) returns (UpdateVoznikResponse) {};
+
+	//delete
+	rpc DeleteVoznik(DeleteVoznikRequest) returns (DeleteVoznikResponse) {};
+}
+
+message VoznikEntity {
+	int32 id = 1;
+	string ime = 2;
+	string priimek = 3;
+	int32 starost = 4;
+	int32 stevilkaformule = 5;
+	int32 stevilozmag = 6;
+}
+
+message CreateVoznikRequest{
+	string ime = 1;
+	string priimek = 2;
+	int32 starost = 3;
+	int32 stevilkaformule = 4;
+	int32 stevilozmag = 5;
+}
+
+message CreateVoznikResponse{
+	int32 id = 1;
+}
+
+message ReadVoznikRequest {
+	int32 id = 1;
+}
+
+message ReadVoznikResponse {
+	
+	string ime = 1;
+	string priimek = 2;
+	int32 starost = 3;
+	int32 stevilkaformule = 4;
+	int32 stevilozmag = 5;
+}
+
+message GetAllRequest {}
+
+message GetAllRequestResponse {
+	repeated ReadVoznikResponse voz = 1;
+}
+
+message UpdateVoznikRequest {
+	int32 id = 1;
+	string ime = 2;
+	string priimek = 3;
+	int32 starost = 4;
+	int32 stevilkaformule = 5;
+	int32 stevilozmag = 6;
+}
+
+message UpdateVoznikResponse {
+	int32 id = 1;
+	
+}
+
+message DeleteVoznikRequest {
+	int32 id = 1;
+}
+
+message DeleteVoznikResponse {
+	int32 id = 1;
+	
+}
+
+

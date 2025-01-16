@@ -1,0 +1,32 @@
+﻿@page "/"
+
+<PageTitle>Formula 1</PageTitle>
+
+<h1>Upravljajte svoje voznike, ekipe in dodelitve voznikov ekipam.</h1>
+
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <button class="btn btn-primary btn-lg" @onclick="NavigateToDrivers">Voznik</button>
+    <button class="btn btn-secondary btn-lg" @onclick="NavigateToTeams">Ekipa</button>
+    <button class="btn btn-success btn-lg" @onclick="NavigateToDriverTeams">Voznik v Ekipi</button>
+</div>
+
+@code {
+    private void NavigateToDrivers()
+    {
+        NavigationManager.NavigateTo("/vozniki");
+    }
+
+    private void NavigateToTeams()
+    {
+        NavigationManager.NavigateTo("/ekipe");
+    }
+
+    private void NavigateToDriverTeams()
+    {
+        NavigationManager.NavigateTo("/vozniki-v-ekipah");
+    }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+}

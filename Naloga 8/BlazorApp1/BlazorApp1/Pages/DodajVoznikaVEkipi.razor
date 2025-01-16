@@ -1,0 +1,104 @@
+﻿@page "/dodaj-voznika-v-ekipo"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Dodaj Vozača v Ekipo</PageTitle>
+
+<h3>Dodaj voznika v ekipo</h3>
+
+<EditForm Model="novaPovezava" OnValidSubmit="DodajPovezavoVoznikaVEkipi">
+    <DataAnnotationsValidator />
+    <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+    <div class="mb-3">
+        <label for="voznikIme" class="form-label">Ime voznika</label>
+        <InputText id="voznikIme" class="form-control" @bind="voznikIme" />
+    </div>
+    <div class="mb-3">
+        <label for="voznikPriimek" class="form-label">Priimek voznika</label>
+        <InputText id="voznikPriimek" class="form-control" @bind="voznikPriimek" />
+    </div>
+    <div class="mb-3">
+        <label for="ekipaNaziv" class="form-label">Naziv ekipe</label>
+        <InputText id="ekipaNaziv" class="form-control" @bind="ekipaNaziv" />
+    </div>
+    <div class="mb-3">
+        <label for="letoOd" class="form-label">Leto Od</label>
+        <InputNumber TValue="int" id="letoOd" class="form-control" @bind="novaPovezava.LetoOd" />
+    </div>
+    <div class="mb-3">
+        <label for="letoDo" class="form-label">Leto Do</label>
+        <InputNumber TValue="int" id="letoDo" class="form-control" @bind="novaPovezava.LetoDo" />
+    </div>
+    <div class="mb-3">
+        <label for="steviloZmag" class="form-label">Število Zmag</label>
+        <InputNumber TValue="int" id="steviloZmag" class="form-control" @bind="novaPovezava.SteviloZmag" />
+    </div>
+    <button type="submit" class="btn btn-success">Dodaj</button>
+</EditForm>
+
+@code {
+    private VoznikVEkipiDto novaPovezava = new VoznikVEkipiDto();
+    private string voznikIme;
+    private string voznikPriimek;
+    private string ekipaNaziv;
+
+    private async Task DodajPovezavoVoznikaVEkipi()
+    {
+        var voznik = await PridobiVoznikId(voznikIme, voznikPriimek);
+        var ekipa = await PridobiEkipaId(ekipaNaziv);
+
+        if (voznik == null || ekipa == null)
+        {
+            Console.WriteLine("Voznik ali ekipa z danim imenom ne obstajata.");
+            return;
+        }
+
+        novaPovezava.VoznikId = voznik.Id;
+        novaPovezava.EkipaId = ekipa.Id;
+
+        var response = await Http.PostAsJsonAsync("api/VoznikVEkipi", novaPovezava);
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/vozniki-v-ekipah");
+        }
+        else
+        {
+            Console.WriteLine("Napaka pri dodajanju povezave.");
+        }
+    }
+
+    private async Task<Voznik?> PridobiVoznikId(string ime, string priimek)
+    {
+        var vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/Voznik");
+        return vozniki?.FirstOrDefault(v => v.Ime == ime && v.Priimek == priimek);
+    }
+
+    private async Task<Ekipa?> PridobiEkipaId(string naziv)
+    {
+        var ekipe = await Http.GetFromJsonAsync<List<Ekipa>>("api/Ekipa");
+        return ekipe?.FirstOrDefault(e => e.Naziv == naziv);
+    }
+
+    public class VoznikVEkipiDto
+    {
+        public int VoznikId { get; set; }
+        public int EkipaId { get; set; }
+        public int LetoOd { get; set; }
+        public int LetoDo { get; set; }
+        public int SteviloZmag { get; set; }
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+    }
+}

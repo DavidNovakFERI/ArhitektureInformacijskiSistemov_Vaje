@@ -1,0 +1,117 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 6\\vaja6\\vaja6\\voznik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|solutionrelative:vaja6\\voznik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 6\\vaja6\\vaja6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|solutionrelative:vaja6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE5DB656-9D65-4837-BD64-CD6296B25ADC}|Vaja6_Console\\Vaja6_Console.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 6\\vaja6\\vaja6_console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE5DB656-9D65-4837-BD64-CD6296B25ADC}|Vaja6_Console\\Vaja6_Console.csproj|solutionrelative:vaja6_console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 6\\vaja6\\vaja6\\protos\\greet.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|solutionrelative:vaja6\\protos\\greet.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 6\\vaja6\\vaja6\\services\\greeterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|solutionrelative:vaja6\\services\\greeterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 6\\vaja6\\vaja6\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{293736C9-DC85-4844-B524-1A6F28D07142}|Vaja6\\Vaja6.csproj|solutionrelative:vaja6\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 202,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GreeterService.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Services\\GreeterService.cs",
+              "RelativeDocumentMoniker": "Vaja6\\Services\\GreeterService.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Services\\GreeterService.cs",
+              "RelativeToolTip": "Vaja6\\Services\\GreeterService.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAswDUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T09:43:13.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\appsettings.json",
+              "RelativeDocumentMoniker": "Vaja6\\appsettings.json",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\appsettings.json",
+              "RelativeToolTip": "Vaja6\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-08-22T09:43:13.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "greet.proto",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Protos\\greet.proto",
+              "RelativeDocumentMoniker": "Vaja6\\Protos\\greet.proto",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Protos\\greet.proto",
+              "RelativeToolTip": "Vaja6\\Protos\\greet.proto",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAqwFcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2024-08-22T09:38:47.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6_Console\\Program.cs",
+              "RelativeDocumentMoniker": "Vaja6_Console\\Program.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6_Console\\Program.cs",
+              "RelativeToolTip": "Vaja6_Console\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T09:42:53.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Program.cs",
+              "RelativeDocumentMoniker": "Vaja6\\Program.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Program.cs",
+              "RelativeToolTip": "Vaja6\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T09:38:47.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Voznik.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Voznik.cs",
+              "RelativeDocumentMoniker": "Vaja6\\Voznik.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 6\\Vaja6\\Vaja6\\Voznik.cs",
+              "RelativeToolTip": "Vaja6\\Voznik.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T09:39:15.081Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

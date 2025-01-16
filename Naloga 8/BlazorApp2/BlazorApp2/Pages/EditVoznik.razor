@@ -1,0 +1,58 @@
+﻿@page "/edit-voznik/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Uredi voznika</h3>
+
+@if (voznik == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <div class="form-group">
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime" @bind="voznik.Ime" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="priimek">Priimek:</label>
+        <input type="text" id="priimek" @bind="voznik.Priimek" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="letoRojstva">Leto Rojstva:</label>
+        <input type="number" id="letoRojstva" @bind="voznik.LetoRojstva" class="form-control" />
+    </div>
+    <button class="btn btn-primary" @onclick="SaveChanges">Shrani spremembe</button>
+    <button class="btn btn-secondary" @onclick="Cancel">Prekliči</button>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Voznik voznik;
+
+    protected override async Task OnInitializedAsync()
+    {
+        voznik = await Http.GetFromJsonAsync<Voznik>($"api/voznik/{Id}");
+    }
+
+    private async Task SaveChanges()
+    {
+        await Http.PutAsJsonAsync($"api/voznik/{Id}", voznik);
+        NavigationManager.NavigateTo("/vozniki");
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/vozniki");
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+        public int LetoRojstva { get; set; }
+    }
+}

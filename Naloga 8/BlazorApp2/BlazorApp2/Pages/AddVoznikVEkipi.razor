@@ -1,0 +1,109 @@
+﻿@page "/add-voznikvekipi"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Dodaj voznika v ekipo</h3>
+
+<div class="form-group">
+    <label for="voznik">Voznik:</label>
+    <select id="voznik" @bind="selectedVoznikId" class="form-control">
+        <option value="">Izberite voznika</option>
+        @foreach (var voznik in vozniki)
+        {
+            <option value="@voznik.Id">@voznik.Ime @voznik.Priimek</option>
+        }
+    </select>
+</div>
+<div class="form-group">
+    <label for="ekipa">Ekipa:</label>
+    <select id="ekipa" @bind="selectedEkipaId" class="form-control">
+        <option value="">Izberite ekipo</option>
+        @foreach (var ekipa in ekipe)
+        {
+            <option value="@ekipa.Id">@ekipa.Naziv</option>
+        }
+    </select>
+</div>
+<div class="form-group">
+    <label for="letoOd">Leto Od:</label>
+    <input type="number" id="letoOd" @bind="LetoOd" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="letoDo">Leto Do:</label>
+    <input type="number" id="letoDo" @bind="LetoDo" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="steviloZmag">Število Zmag:</label>
+    <input type="number" id="steviloZmag" @bind="SteviloZmag" class="form-control" />
+</div>
+<button class="btn btn-primary" @onclick="SaveVoznikVEkipi">Shrani</button>
+<button class="btn btn-secondary" @onclick="Cancel">Prekliči</button>
+
+@code {
+    private List<Voznik> vozniki;
+    private List<Ekipa> ekipe;
+    private int selectedVoznikId;
+    private int selectedEkipaId;
+    private int LetoOd;
+    private int LetoDo;
+    private int SteviloZmag;
+
+    protected override async Task OnInitializedAsync()
+    {
+        vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/voznik");
+        ekipe = await Http.GetFromJsonAsync<List<Ekipa>>("api/ekipa");
+    }
+
+    private async Task SaveVoznikVEkipi()
+    {
+        var voznikVEkipiDto = new VoznikVEkipiDto
+            {
+                VoznikId = selectedVoznikId,
+                EkipaId = selectedEkipaId,
+                LetoOd = LetoOd,
+                LetoDo = LetoDo,
+                SteviloZmag = SteviloZmag
+            };
+
+        try
+        {
+            await Http.PostAsJsonAsync("api/voznikvekipi", voznikVEkipiDto);
+            NavigationManager.NavigateTo("/vozniki-vekipi");
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/vozniki-vekipi");
+    }
+
+    public class VoznikVEkipiDto
+    {
+        public int VoznikId { get; set; }
+        public int EkipaId { get; set; }
+        public int LetoOd { get; set; }
+        public int LetoDo { get; set; }
+        public int SteviloZmag { get; set; }
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+    }
+}

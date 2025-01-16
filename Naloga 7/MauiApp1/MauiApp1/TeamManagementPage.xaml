@@ -1,0 +1,46 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.TeamManagementPage"
+             Title="Upravljanje Ekip">
+
+    <StackLayout Padding="10">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Razvrsti po nazivu" Clicked="OnSortByNameClicked"/>
+            <Button Text="Razvrsti po državi" Clicked="OnSortByCountryClicked"/>
+            <Button Text="Razvrsti po letu ustanovitve" Clicked="OnSortByYearClicked"/>
+        </StackLayout>
+
+        <!-- Seznam ekip -->
+        <ListView x:Name="EkipeListView"
+                  ItemsSource="{Binding Ekipe}"
+                  SelectedItem="{Binding SelectedEkipa}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Naziv}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Drzava}" Margin="10,0,0,0"/>
+                            <Label Text="{Binding LetoUstanovitve}" Margin="10,0,0,0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Polja za urejanje -->
+        <Entry x:Name="NazivEntry" Placeholder="Naziv ekipe" Text="{Binding SelectedEkipa.Naziv}"/>
+        <Entry x:Name="DrzavaEntry" Placeholder="Država" Text="{Binding SelectedEkipa.Drzava}"/>
+        <Entry x:Name="LetoUstanovitveEntry" Placeholder="Leto Ustanovitve" Text="{Binding SelectedEkipa.LetoUstanovitve}" Keyboard="Numeric"/>
+
+        <!-- Gumbi za operacije -->
+        <Button Text="Dodaj Ekipo" Clicked="OnAddEkipaClicked"/>
+        <Button Text="Posodobi Ekipo" Clicked="OnUpdateEkipaClicked" IsEnabled="{Binding IsEkipaSelected}"/>
+        <Button Text="Izbriši Ekipo" Clicked="OnDeleteEkipaClicked" IsEnabled="{Binding IsEkipaSelected}"/>
+
+        <Button Text="Nazaj" Clicked="OnBackButtonClicked" HorizontalOptions="Center"/>
+
+    </StackLayout>
+
+</ContentPage>

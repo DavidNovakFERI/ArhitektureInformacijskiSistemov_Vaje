@@ -1,0 +1,52 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.VoznikVEkipiManagementPage"
+             Title="Upravljanje Voznikov v Ekipah">
+
+    <StackLayout Padding="10">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Razvrsti po imenu voznika" Clicked="OnSortByNameClicked"/>
+            <Button Text="Razvrsti po nazivu ekipe" Clicked="OnSortByTeamNameClicked"/>
+            <Button Text="Razvrsti po letu od" Clicked="OnSortByYearFromClicked"/>
+            <Button Text="Razvrsti po letu do" Clicked="OnSortByYearToClicked"/>
+            <Button Text="Razvrsti po številu zmag" Clicked="OnSortByWinsClicked"/>
+        </StackLayout>
+
+        <!-- Seznam voznikov v ekipah -->
+        <ListView x:Name="VoznikiVEkipiListView"
+                  ItemsSource="{Binding VoznikiVEkipi}"
+                  SelectedItem="{Binding SelectedVoznikVEkipi}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Voznik.Ime}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Ekipa.Naziv}" Margin="10,0,0,0"/>
+                            <Label Text="{Binding LetoOd}" Margin="10,0,0,0"/>
+                            <Label Text="{Binding LetoDo}" Margin="10,0,0,0"/>
+                            <Label Text="{Binding SteviloZmag}" Margin="10,0,0,0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Polja za urejanje/nov vnos -->
+        <Entry x:Name="VoznikImeEntry" Placeholder="Ime Voznika" />
+        <Entry x:Name="EkipaNazivEntry" Placeholder="Naziv Ekipe" />
+        <Entry x:Name="LetoOdEntry" Placeholder="Leto Od" Keyboard="Numeric"/>
+        <Entry x:Name="LetoDoEntry" Placeholder="Leto Do" Keyboard="Numeric"/>
+        <Entry x:Name="SteviloZmagEntry" Placeholder="Število Zmag" Keyboard="Numeric"/>
+
+        <!-- Gumbi za operacije -->
+        <Button Text="Dodaj Voznika v Ekipo" Clicked="OnAddVoznikVEkipiClicked"/>
+        <Button Text="Posodobi Povezavo" Clicked="OnUpdateVoznikVEkipiClicked" IsEnabled="{Binding IsVoznikVEkipiSelected}"/>
+        <Button Text="Izbriši Povezavo" Clicked="OnDeleteVoznikVEkipiClicked" IsEnabled="{Binding IsVoznikVEkipiSelected}"/>
+
+        <Button Text="Nazaj na Voznike" Clicked="OnBackToMainPageClicked"/>
+
+    </StackLayout>
+
+</ContentPage>

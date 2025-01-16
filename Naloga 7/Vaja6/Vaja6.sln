@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vaja6", "Vaja6\Vaja6.csproj", "{293736C9-DC85-4844-B524-1A6F28D07142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaja6_Console", "Vaja6_Console\Vaja6_Console.csproj", "{BE5DB656-9D65-4837-BD64-CD6296B25ADC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{293736C9-DC85-4844-B524-1A6F28D07142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293736C9-DC85-4844-B524-1A6F28D07142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293736C9-DC85-4844-B524-1A6F28D07142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293736C9-DC85-4844-B524-1A6F28D07142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5DB656-9D65-4837-BD64-CD6296B25ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5DB656-9D65-4837-BD64-CD6296B25ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5DB656-9D65-4837-BD64-CD6296B25ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5DB656-9D65-4837-BD64-CD6296B25ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D2B67B1-F51D-4C63-B800-68F776311518}
+	EndGlobalSection
+EndGlobal

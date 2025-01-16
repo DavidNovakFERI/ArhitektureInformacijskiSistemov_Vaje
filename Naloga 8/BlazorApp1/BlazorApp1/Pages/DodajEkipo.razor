@@ -1,0 +1,50 @@
+﻿@page "/dodaj-ekipo"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Dodaj Ekipo</PageTitle>
+
+<h3>Dodaj novo ekipo</h3>
+
+<EditForm Model="novaEkipa" OnValidSubmit="DodajNovoEkipo">
+    <DataAnnotationsValidator />
+    <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+    <div class="mb-3">
+        <label for="naziv" class="form-label">Naziv</label>
+        <InputText id="naziv" class="form-control" @bind="novaEkipa.Naziv" />
+    </div>
+    <div class="mb-3">
+        <label for="drzava" class="form-label">Država</label>
+        <InputText id="drzava" class="form-control" @bind="novaEkipa.Drzava" />
+    </div>
+    <div class="mb-3">
+        <label for="letoUstanovitve" class="form-label">Leto Ustanovitve</label>
+        <InputNumber TValue="int" id="letoUstanovitve" class="form-control" @bind="novaEkipa.LetoUstanovitve" />
+    </div>
+    <button type="submit" class="btn btn-success">Dodaj</button>
+</EditForm>
+
+@code {
+    private Ekipa novaEkipa = new Ekipa();
+
+    private async Task DodajNovoEkipo()
+    {
+        var response = await Http.PostAsJsonAsync("api/ekipa", novaEkipa);
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/ekipe");
+        }
+        else
+        {
+            Console.WriteLine("Napaka pri dodajanju ekipe.");
+        }
+    }
+
+    public class Ekipa
+    {
+        public string Naziv { get; set; }
+        public string Drzava { get; set; }
+        public int LetoUstanovitve { get; set; }
+    }
+}

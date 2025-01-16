@@ -1,0 +1,117 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{14D4ED2B-E5AF-4C42-8A17-57F329043DC2}|BlazorApp3\\BlazorApp3.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 3\\webapplication1\\blazorapp3\\voznikiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14D4ED2B-E5AF-4C42-8A17-57F329043DC2}|BlazorApp3\\BlazorApp3.csproj|solutionrelative:blazorapp3\\voznikiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14D4ED2B-E5AF-4C42-8A17-57F329043DC2}|BlazorApp3\\BlazorApp3.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 3\\webapplication1\\blazorapp3\\razredi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14D4ED2B-E5AF-4C42-8A17-57F329043DC2}|BlazorApp3\\BlazorApp3.csproj|solutionrelative:blazorapp3\\razredi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14D4ED2B-E5AF-4C42-8A17-57F329043DC2}|BlazorApp3\\BlazorApp3.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 3\\webapplication1\\blazorapp3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14D4ED2B-E5AF-4C42-8A17-57F329043DC2}|BlazorApp3\\BlazorApp3.csproj|solutionrelative:blazorapp3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63A91DF2-C122-4B93-8A99-70C0A353B1C8}|WebApplication1\\WebApplication1.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 3\\webapplication1\\webapplication1\\razredi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63A91DF2-C122-4B93-8A99-70C0A353B1C8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\razredi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63A91DF2-C122-4B93-8A99-70C0A353B1C8}|WebApplication1\\WebApplication1.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 3\\webapplication1\\webapplication1\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63A91DF2-C122-4B93-8A99-70C0A353B1C8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63A91DF2-C122-4B93-8A99-70C0A353B1C8}|WebApplication1\\WebApplication1.csproj|d:\\2letnik\\1_semester\\_ais\\naloga 3\\webapplication1\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63A91DF2-C122-4B93-8A99-70C0A353B1C8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 250,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VoznikiServices.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\BlazorApp3\\VoznikiServices.cs",
+              "RelativeDocumentMoniker": "BlazorApp3\\VoznikiServices.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\BlazorApp3\\VoznikiServices.cs",
+              "RelativeToolTip": "BlazorApp3\\VoznikiServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T10:33:15.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\BlazorApp3\\Program.cs",
+              "RelativeDocumentMoniker": "BlazorApp3\\Program.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\BlazorApp3\\Program.cs",
+              "RelativeToolTip": "BlazorApp3\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T10:33:15.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Razredi.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\BlazorApp3\\Razredi.cs",
+              "RelativeDocumentMoniker": "BlazorApp3\\Razredi.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\BlazorApp3\\Razredi.cs",
+              "RelativeToolTip": "BlazorApp3\\Razredi.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAA1wCMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T10:33:15.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeToolTip": "WebApplication1\\Program.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAACIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T10:33:15.557Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Model.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\WebApplication1\\Model.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Model.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\WebApplication1\\Model.cs",
+              "RelativeToolTip": "WebApplication1\\Model.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T10:33:15.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Razredi.cs",
+              "DocumentMoniker": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\WebApplication1\\Razredi.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Razredi.cs",
+              "ToolTip": "D:\\2LETNIK\\1_semester\\_AIS\\Naloga 3\\WebApplication1\\WebApplication1\\Razredi.cs",
+              "RelativeToolTip": "WebApplication1\\Razredi.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T10:33:15.56Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+﻿@page "/vozniki"
+
+<PageTitle>Vozniki</PageTitle>
+
+<h3>Seznam voznikov</h3>
+
+<a class="btn btn-success mb-3" href="/dodaj-voznika">Dodaj novega voznika</a>
+
+@if (vozniki == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else if (!vozniki.Any())
+{
+    <p><em>Trenutno ni nobenega voznika.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Priimek</th>
+                <th>Leto Rojstva</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var voznik in vozniki)
+            {
+                <tr>
+                    <td>@voznik.Ime</td>
+                    <td>@voznik.Priimek</td>
+                    <td>@voznik.LetoRojstva</td>
+                    <td>
+                        <button class="btn btn-primary me-2" @onclick="() => EditVoznik(voznik.Id)">Uredi</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteVoznik(voznik.Id)">Izbriši</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Voznik>? vozniki;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/voznik");
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Prišlo je do napake: {ex.Message}");
+        }
+    }
+
+    private void EditVoznik(int id)
+    {
+        Navigation.NavigateTo($"/uredi-voznika/{id}");
+    }
+
+    private async Task DeleteVoznik(int id)
+    {
+        if (await JsRuntime.InvokeAsync<bool>("confirm", $"Ali ste prepričani, da želite izbrisati voznika z ID {id}?"))
+        {
+            try
+            {
+                await Http.DeleteAsync($"api/voznik/{id}");
+                vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/voznik");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Napaka pri brisanju: {ex.Message}");
+            }
+        }
+    }
+
+    [Inject]
+    public HttpClient Http { get; set; } = default!;
+
+    [Inject]
+    public NavigationManager Navigation { get; set; } = default!;
+
+    [Inject]
+    public IJSRuntime JsRuntime { get; set; } = default!;
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; } = string.Empty;
+        public string Priimek { get; set; } = string.Empty;
+        public int LetoRojstva { get; set; }
+    }
+}

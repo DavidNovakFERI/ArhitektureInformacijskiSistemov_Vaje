@@ -1,0 +1,110 @@
+﻿@page "/vozniki-v-ekipah"
+
+<PageTitle>Vozniki v Ekipah</PageTitle>
+
+<h3>Seznam voznikov v ekipah</h3>
+
+<a class="btn btn-success mb-3" href="/dodaj-voznika-v-ekipo">Dodaj voznika v ekipo</a>
+
+@if (povezave == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Voznik</th>
+                <th>Ekipa</th>
+                <th>Leto Od</th>
+                <th>Leto Do</th>
+                <th>Število Zmag</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var povezava in povezave)
+            {
+                <tr>
+                    <td>@povezava.Voznik.Ime @povezava.Voznik.Priimek</td>
+                    <td>@povezava.Ekipa.Naziv</td>
+                    <td>@povezava.LetoOd</td>
+                    <td>@povezava.LetoDo</td>
+                    <td>@povezava.SteviloZmag</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditPovezava(povezava.Id)">Uredi</button>
+                        <button class="btn btn-danger" @onclick="() => DeletePovezava(povezava.Id)">Izbriši</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<VoznikVEkipi> povezave;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            povezave = await Http.GetFromJsonAsync<List<VoznikVEkipi>>("api/VoznikVEkipi");
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private void EditPovezava(int id)
+    {
+        Navigation.NavigateTo($"/uredi-voznika-v-ekipi/{id}");
+    }
+
+    private async Task DeletePovezava(int id)
+    {
+        try
+        {
+            await Http.DeleteAsync($"api/VoznikVEkipi/{id}");
+            povezave = await Http.GetFromJsonAsync<List<VoznikVEkipi>>("api/VoznikVEkipi");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Napaka pri brisanju: {ex.Message}");
+        }
+    }
+
+    [Inject]
+    public HttpClient Http { get; set; }
+
+    [Inject]
+    public NavigationManager Navigation { get; set; }
+
+    public class VoznikVEkipi
+    {
+        public int Id { get; set; }
+        public Voznik Voznik { get; set; }
+        public Ekipa Ekipa { get; set; }
+        public int LetoOd { get; set; }
+        public int LetoDo { get; set; }
+        public int SteviloZmag { get; set; }
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+    }
+}

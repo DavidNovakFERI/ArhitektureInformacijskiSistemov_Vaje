@@ -1,0 +1,48 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <StackLayout Padding="10">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Razvrsti po imenu" Clicked="OnSortByNameClicked"/>
+            <Button Text="Razvrsti po priimku" Clicked="OnSortBySurnameClicked"/>
+            <Button Text="Razvrsti po letu rojstva" Clicked="OnSortByYearClicked"/>
+        </StackLayout>
+
+
+        <!-- Seznam voznikov -->
+        <ListView x:Name="VoznikiListView"
+                  ItemsSource="{Binding Vozniki}"
+                  SelectedItem="{Binding SelectedVoznik}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Ime}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Priimek}" Margin="10,0,0,0"/>
+                            <Label Text="{Binding LetoRojstva}" Margin="10,0,0,0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Polja za urejanje/nov vnos -->
+        <Entry x:Name="ImeEntry" Placeholder="Ime" Text="{Binding SelectedVoznik.Ime}"/>
+        <Entry x:Name="PriimekEntry" Placeholder="Priimek" Text="{Binding SelectedVoznik.Priimek}"/>
+        <Entry x:Name="LetoRojstvaEntry" Placeholder="Leto Rojstva" Text="{Binding SelectedVoznik.LetoRojstva}" Keyboard="Numeric"/>
+
+        <!-- Gumbi za operacije -->
+        <Button Text="Dodaj Voznika" Clicked="OnAddVoznikClicked"/>
+        <Button Text="Posodobi Voznika" Clicked="OnUpdateVoznikClicked" IsEnabled="{Binding IsVoznikSelected}"/>
+        <Button Text="Izbriši Voznika" Clicked="OnDeleteVoznikClicked" IsEnabled="{Binding IsVoznikSelected}"/>
+
+        <!-- Gumb za navigacijo na stran za upravljanje ekip -->
+        <Button Text="Upravljanje Ekip" Clicked="OnManageTeamsClicked"/>
+        <Button Text="Upravljanje Voznikov v Ekipah" Clicked="OnManageVoznikiVEkipiClicked"/>
+
+    </StackLayout>
+
+</ContentPage>

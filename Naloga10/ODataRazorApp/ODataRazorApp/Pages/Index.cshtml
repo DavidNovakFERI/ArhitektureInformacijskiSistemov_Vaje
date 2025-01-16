@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Welcome to the OData Web App</h2>
+
+<p>Select a model to manage:</p>
+
+<div>
+    <a class="btn btn-primary" asp-page="/Teams">Manage Teams</a>
+    <a class="btn btn-primary" asp-page="/Players">Manage Players</a>
+    <a class="btn btn-primary" asp-page="/Matches">Manage Matches</a>
+    <a class="btn btn-primary" asp-page="/Leagues">Manage Leagues</a>
+    <a class="btn btn-primary" asp-page="/StatisticsModel">Manage Statistics</a>
+</div>

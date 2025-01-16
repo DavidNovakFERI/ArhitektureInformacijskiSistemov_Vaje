@@ -1,0 +1,71 @@
+﻿@page "/uredi-voznika/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h3>Uredi voznika</h3>
+
+@if (voznik == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <EditForm Model="voznik" OnValidSubmit="ShraniSpremembe">
+        <DataAnnotationsValidator />
+        <Microsoft.AspNetCore.Components.Forms.ValidationSummary /> <!-- Default ASP.NET Core ValidationSummary -->
+        <Blazorise.ValidationSummary /> <!-- Blazorise ValidationSummary -->
+
+        <div class="mb-3">
+            <label for="ime" class="form-label">Ime</label>
+            <InputText id="ime" class="form-control" @bind-Value="voznik.Ime" />
+        </div>
+        <div class="mb-3">
+            <label for="priimek" class="form-label">Priimek</label>
+            <InputText id="priimek" class="form-control" @bind-Value="voznik.Priimek" />
+        </div>
+        <div class="mb-3">
+            <label for="letoRojstva" class="form-label">Leto Rojstva</label>
+            <InputNumber TValue="int" id="letoRojstva" class="form-control" @bind-Value="voznik.LetoRojstva" />
+        </div>
+        <button type="submit" class="btn btn-primary">Shrani</button>
+        <button type="button" class="btn btn-secondary ms-2" @onclick="Preklici">Prekliči</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Voznik? voznik;
+
+    protected override async Task OnInitializedAsync()
+    {
+        voznik = await Http.GetFromJsonAsync<Voznik>($"api/voznik/{Id}");
+    }
+
+    private async Task ShraniSpremembe()
+    {
+        var response = await Http.PutAsJsonAsync($"api/voznik/{Id}", voznik);
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/vozniki");
+        }
+        else
+        {
+            Console.WriteLine("Napaka pri shranjevanju sprememb.");
+        }
+    }
+
+    private void Preklici()
+    {
+        Navigation.NavigateTo("/vozniki");
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; } = string.Empty;
+        public string Priimek { get; set; } = string.Empty;
+        public int LetoRojstva { get; set; }
+    }
+}

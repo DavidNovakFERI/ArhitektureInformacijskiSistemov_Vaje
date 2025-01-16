@@ -1,0 +1,100 @@
+﻿@page "/vozniki"
+
+<PageTitle>Vozniki</PageTitle>
+
+<h3>Seznam voznikov</h3>
+
+<button class="btn btn-success" @onclick="AddVoznik">Dodaj voznika</button>
+
+@if (vozniki == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Priimek</th>
+                <th>Leto Rojstva</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var voznik in vozniki)
+            {
+                <tr>
+                    <td>@voznik.Ime</td>
+                    <td>@voznik.Priimek</td>
+                    <td>@voznik.LetoRojstva</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditVoznik(voznik.Id)">Uredi</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteVoznik(voznik.Id)">Izbriši</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Voznik> vozniki;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/voznik");
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private void AddVoznik()
+    {
+        NavigationManager.NavigateTo("/add-voznik");
+    }
+
+    private async Task EditVoznik(int id)
+    {
+        NavigationManager.NavigateTo($"/edit-voznik/{id}");
+    }
+
+    private async Task DeleteVoznik(int id)
+    {
+        try
+        {
+            await Http.DeleteAsync($"api/voznik/{id}");
+            vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/voznik"); // Osveži seznam
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    [Inject]
+    public HttpClient Http { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+        public int LetoRojstva { get; set; }
+    }
+}

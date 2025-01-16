@@ -1,0 +1,90 @@
+﻿@page "/"
+@using BlazorApp1.Razredi
+@using static BlazorApp1.Razredi.Razredi
+@inject VoznikServices VoznikService
+@inject NavigationManager NavigationManager
+
+
+<h1>Vozniki</h1>
+
+@if (vozniki == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (vozniki.Count == 0)
+{
+    <p><em>There are no vozniki.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ime Priimek</th>
+                <th>Številka Avta</th>
+                <th>Leto Rojstva</th>
+                <th>Novinec</th>
+                <th>Uredi</th>
+                <th>Izbriši</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var voznik in vozniki)
+            {
+                <tr>
+                    <td>@voznik.ImePriimek</td>
+                    <td>@voznik.StevilkaAvta</td>
+                    <td>@voznik.letoRojstva</td>
+                    <td>@(voznik.Novinec ? "Da" : "Ne")</td>
+                    <td>
+                        <!-- Dodajte logiko za urejanje voznika -->
+                        <button class="btn btn-primary" @onclick="() => UrediVoznika(voznik)">Uredi</button>
+                    </td>
+                    <td>
+                        <!-- Dodajte logiko za brisanje voznika -->
+                        <button class="btn btn-danger" @onclick="() => IzbrisiVoznika(voznik.Id)">Izbriši</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!--Modal za urejanje voznika-->
+@if (selectedVoznik != null)
+{
+    <EditVoznikModal Voznik="selectedVoznik" CloseEvent="CloseEditModal" />
+}
+
+@code {
+    private List<Voznik> vozniki;
+    private Voznik selectedVoznik;
+    int id;
+    string ImePriimek;
+    int StevilkaAvta;
+    int letoRojstva;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await VoznikService.GetVozniki( id,  ImePriimek,  StevilkaAvta,  letoRojstva);
+    }
+
+    private void UrediVoznika(Voznik voznik)
+    {
+        selectedVoznik = voznik;
+    }
+
+    private async Task IzbrisiVoznika(int id)
+    {
+        await VoznikService.DeleteVoznik(id);
+        await VoznikService.GetVozniki( id,  ImePriimek,  StevilkaAvta,  letoRojstva); // Osveži seznam po izbrisu
+    }
+
+    private void CloseEditModal()
+    {
+        selectedVoznik = null;
+    }
+}
+
+
+

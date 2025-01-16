@@ -1,0 +1,69 @@
+﻿@page "/edit-ekipa/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Uredi ekipo</h3>
+
+@if (ekipa == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <div class="form-group">
+        <label for="naziv">Naziv:</label>
+        <input type="text" id="naziv" @bind="ekipa.Naziv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="drzava">Država:</label>
+        <input type="text" id="drzava" @bind="ekipa.Drzava" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="letoUstanovitve">Leto Ustanovitve:</label>
+        <input type="number" id="letoUstanovitve" @bind="ekipa.LetoUstanovitve" class="form-control" />
+    </div>
+    <button class="btn btn-primary" @onclick="SaveChanges">Shrani spremembe</button>
+    <button class="btn btn-secondary" @onclick="Cancel">Prekliči</button>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Ekipa ekipa;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ekipa = await Http.GetFromJsonAsync<Ekipa>($"api/ekipa/{Id}");
+    }
+
+    private async Task SaveChanges()
+    {
+        try
+        {
+            await Http.PutAsJsonAsync($"api/ekipa/{Id}", ekipa);
+            NavigationManager.NavigateTo("/ekipe");
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/ekipe");
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+        public string Drzava { get; set; }
+        public int LetoUstanovitve { get; set; }
+    }
+}

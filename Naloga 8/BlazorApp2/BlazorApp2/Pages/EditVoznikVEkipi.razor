@@ -1,0 +1,146 @@
+﻿@page "/edit-voznikvekipi/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Uredi voznika v ekipi</h3>
+
+@if (voznikVEkipi == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <div class="form-group">
+        <label for="voznik">Voznik:</label>
+        <select id="voznik" @bind="voznikVEkipi.VoznikId" @bind:event="onchange" class="form-control">
+            @foreach (var voznik in vozniki)
+            {
+                <option value="@voznik.Id">@voznik.Id - @voznik.Ime @voznik.Priimek</option>
+            }
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label for="ekipa">Ekipa:</label>
+        <select id="ekipa" @bind="voznikVEkipi.EkipaId" @bind:event="onchange" class="form-control">
+            @foreach (var ekipa in ekipe)
+            {
+                <option value="@ekipa.Id">@ekipa.Id - @ekipa.Naziv</option>
+            }
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label for="letoOd">Leto Od:</label>
+        <input type="number" id="letoOd" @bind="voznikVEkipi.LetoOd" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="letoDo">Leto Do:</label>
+        <input type="number" id="letoDo" @bind="voznikVEkipi.LetoDo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="steviloZmag">Število Zmag:</label>
+        <input type="number" id="steviloZmag" @bind="voznikVEkipi.SteviloZmag" class="form-control" />
+    </div>
+    <button class="btn btn-primary" @onclick="SaveVoznikVEkipi">Shrani</button>
+    <button class="btn btn-secondary" @onclick="Cancel">Prekliči</button>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private VoznikVEkipi voznikVEkipi;
+    private List<Voznik> vozniki;
+    private List<Ekipa> ekipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            voznikVEkipi = await Http.GetFromJsonAsync<VoznikVEkipi>($"api/voznikvekipi/{Id}");
+            vozniki = await Http.GetFromJsonAsync<List<Voznik>>("api/voznik");
+            ekipe = await Http.GetFromJsonAsync<List<Ekipa>>("api/ekipa");
+
+            // Populate the nested Voznik and Ekipa objects based on the IDs
+            voznikVEkipi.Voznik = vozniki.FirstOrDefault(v => v.Id == voznikVEkipi.VoznikId);
+            voznikVEkipi.Ekipa = ekipe.FirstOrDefault(e => e.Id == voznikVEkipi.EkipaId);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Napaka pri nalaganju podatkov: {ex.Message}");
+        }
+    }
+
+    private async Task SaveVoznikVEkipi()
+    {
+        try
+        {
+            // Ensure the nested objects are correctly populated before sending the request
+            voznikVEkipi.Voznik = vozniki.FirstOrDefault(v => v.Id == voznikVEkipi.VoznikId);
+            voznikVEkipi.Ekipa = ekipe.FirstOrDefault(e => e.Id == voznikVEkipi.EkipaId);
+
+            var response = await Http.PutAsJsonAsync($"api/voznikvekipi/{Id}", voznikVEkipi);
+            if (response.IsSuccessStatusCode)
+            {
+                NavigationManager.NavigateTo("/vozniki-vekipi");
+            }
+            else
+            {
+                Console.WriteLine($"Napaka pri shranjevanju: {response.StatusCode}");
+            }
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/vozniki-vekipi");
+    }
+
+    private void UpdateVoznik(ChangeEventArgs e)
+    {
+        var selectedVoznikId = int.Parse(e.Value.ToString());
+        voznikVEkipi.Voznik = vozniki.FirstOrDefault(v => v.Id == selectedVoznikId);
+    }
+
+    private void UpdateEkipa(ChangeEventArgs e)
+    {
+        var selectedEkipaId = int.Parse(e.Value.ToString());
+        voznikVEkipi.Ekipa = ekipe.FirstOrDefault(e => e.Id == selectedEkipaId);
+    }
+
+    public class VoznikVEkipi
+    {
+        public int Id { get; set; }
+        public int VoznikId { get; set; }
+        public Voznik Voznik { get; set; }
+        public int EkipaId { get; set; }
+        public Ekipa Ekipa { get; set; }
+        public int LetoOd { get; set; }
+        public int LetoDo { get; set; }
+        public int SteviloZmag { get; set; }
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+        public int LetoRojstva { get; set; }
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+        public string Drzava { get; set; }
+        public int LetoUstanovitve { get; set; }
+    }
+}

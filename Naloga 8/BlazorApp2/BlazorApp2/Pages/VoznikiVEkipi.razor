@@ -1,0 +1,158 @@
+﻿@page "/vozniki-vekipi"
+
+<PageTitle>Vozniki v ekipah</PageTitle>
+
+<h3>Seznam voznikov v ekipah</h3>
+
+<button class="btn btn-success" @onclick="AddVoznikVEkipi">Dodaj voznika v ekipo</button>
+
+@if (voznikiVEkipi == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Voznik</th>
+                <th>Ekipa</th>
+                <th>Leto Od</th>
+                <th>Leto Do</th>
+                <th>Število Zmag</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var voznikVEkipi in voznikiVEkipi)
+            {
+                <tr>
+                    <td>@voznikVEkipi.Voznik.Ime @voznikVEkipi.Voznik.Priimek</td>
+                    <td>@voznikVEkipi.Ekipa.Naziv</td>
+                    <td>@voznikVEkipi.LetoOd</td>
+                    <td>@voznikVEkipi.LetoDo</td>
+                    <td>@voznikVEkipi.SteviloZmag</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditVoznikVEkipi(voznikVEkipi.Id)">Uredi</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteVoznikVEkipi(voznikVEkipi.Id)">Izbriši</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Dodajamo graf za prikaz zmag -->
+    <h3>Graf: Število zmag po voznikih</h3>
+    <BarChart @ref="barChart" TItem="int" Options="@chartOptions" />
+}
+
+@code {
+    private List<VoznikVEkipi> voznikiVEkipi;
+    private BarChart<int> barChart;
+    private BarChartOptions chartOptions = new()
+        {
+            Responsive = true,
+            Plugins = new()
+            {
+                Legend = new() { Position = "right" },
+                Title = new() { Display = true, Text = "Število zmag po voznikih" }
+            }
+        };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            voznikiVEkipi = await Http.GetFromJsonAsync<List<VoznikVEkipi>>("api/voznikvekipi");
+
+            if (voznikiVEkipi != null)
+            {
+                await UpdateChart();
+            }
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private async Task UpdateChart()
+    {
+        await barChart.Clear();
+
+        var labels = voznikiVEkipi.Select(v => $"{v.Voznik.Ime} {v.Voznik.Priimek}").ToArray();
+        var data = voznikiVEkipi.Select(v => v.SteviloZmag).ToArray();
+
+        var dataset = new BarChartDataset<int>
+            {
+                Label = "Število zmag",
+                Data = data.ToList(),
+                BackgroundColor = new List<string> { "rgba(75, 192, 192, 0.2)" },
+                BorderColor = new List<string> { "rgba(75, 192, 192, 1)" },
+                BorderWidth = 1
+            };
+
+        await barChart.AddLabelsDatasetsAndUpdate(labels, dataset);
+    }
+
+    private void AddVoznikVEkipi()
+    {
+        NavigationManager.NavigateTo("/add-voznikvekipi");
+    }
+
+    private async Task EditVoznikVEkipi(int id)
+    {
+        NavigationManager.NavigateTo($"/edit-voznikvekipi/{id}");
+    }
+
+    private async Task DeleteVoznikVEkipi(int id)
+    {
+        try
+        {
+            await Http.DeleteAsync($"api/voznikvekipi/{id}");
+            voznikiVEkipi = await Http.GetFromJsonAsync<List<VoznikVEkipi>>("api/voznikvekipi"); // Osveži seznam
+            await UpdateChart(); // Osveži graf
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    [Inject]
+    public HttpClient Http { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public class VoznikVEkipi
+    {
+        public int Id { get; set; }
+        public Voznik Voznik { get; set; }
+        public Ekipa Ekipa { get; set; }
+        public int LetoOd { get; set; }
+        public int LetoDo { get; set; }
+        public int SteviloZmag { get; set; }
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+    }
+}

@@ -1,0 +1,14 @@
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.GeneratedMSBuildEditorConfig.editorconfig
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.AssemblyInfoInputs.cache
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.AssemblyInfo.cs
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.csproj.CoreCompileInputs.cache
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\bin\Debug\net6.0\PoimenovaneCevi_DavidNovak.exe
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\bin\Debug\net6.0\PoimenovaneCevi_DavidNovak.deps.json
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\bin\Debug\net6.0\PoimenovaneCevi_DavidNovak.runtimeconfig.json
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\bin\Debug\net6.0\PoimenovaneCevi_DavidNovak.dll
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\bin\Debug\net6.0\PoimenovaneCevi_DavidNovak.pdb
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.dll
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\refint\PoimenovaneCevi_DavidNovak.dll
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.pdb
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\PoimenovaneCevi_DavidNovak.genruntimeconfig.cache
+D:\2LETNIK\_AIS\Naloga 2\PoimenovaneCevi_DavidNovak\PoimenovaneCevi_DavidNovak\obj\Debug\net6.0\ref\PoimenovaneCevi_DavidNovak.dll

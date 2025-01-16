@@ -1,0 +1,116 @@
+﻿@page "/"
+@using BlazorApp3.Razredi
+@using static BlazorApp3.Razredi.Razredi
+@inject VoznikServices VoznikService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<h1>Vozniki</h1>
+
+@if (vozniki == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (vozniki.Any())
+{
+    <table class="table">
+        <!-- ... table headers ... -->
+        <tbody>
+            @foreach (var voznik in vozniki)
+            {
+                <tr>
+                    @if (voznik == selectedVoznik)
+                    {
+                        <td><input @bind="selectedVoznik.ImePriimek" /></td>
+                        <td><input type="number" @bind="selectedVoznik.StevilkaAvta" /></td>
+                        <td><input type="number" @bind="selectedVoznik.letoRojstva" /></td>
+                        <td><input type="checkbox" @bind="selectedVoznik.Novinec" /></td>
+                        <td>
+                            <button class="btn btn-success" @onclick="() => SaveVoznik(selectedVoznik)">Shrani</button>
+                            <button class="btn btn-secondary" @onclick="CancelEdit">Prekliči</button>
+                        </td>
+                        <td></td> <!-- Empty cell for the delete button -->
+                    }
+                    else
+                    {
+                        <td>@voznik.ImePriimek</td>
+                        <td>@voznik.StevilkaAvta</td>
+                        <td>@voznik.letoRojstva</td>
+                        <td>@(voznik.Novinec ? "Da" : "Ne")</td>
+                        <td>
+                            <button class="btn btn-primary" @onclick="() => EditVoznik(voznik)">Uredi</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" @onclick="() => DeleteVoznik(voznik.Id)">Izbriši</button>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p><em>There are no vozniki.</em></p>
+}
+
+@code {
+    private IEnumerable<Voznik> vozniki;
+    private Voznik selectedVoznik;
+
+    protected override async Task OnInitializedAsync()
+    {
+        vozniki = await VoznikService.GetVozniki();
+    }
+
+    private void EditVoznik(Voznik voznik)
+    {
+        selectedVoznik = voznik;
+    }
+
+    private async Task SaveVoznik(Voznik voznik)
+    {
+        try
+        {
+            await VoznikService.UpdateVoznik(voznik);
+            vozniki = await VoznikService.GetVozniki(); 
+            selectedVoznik = null; 
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error updating voznik: {ex.Message}");
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+           
+        }
+    }
+
+    private void CancelEdit()
+    {
+        selectedVoznik = null;
+    }
+
+    private async Task DeleteVoznik(int id)
+    {
+        var confirmed = await ConfirmDelete();
+        if (confirmed)
+        {
+            await VoznikService.DeleteVoznik(id);
+            vozniki = await VoznikService.GetVozniki(); // Refresh the list after deletion
+        }
+    }
+
+    private async Task<bool> ConfirmDelete()
+    {
+        return await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this voznik?");
+    }
+
+   
+}
+
+    
+
+    

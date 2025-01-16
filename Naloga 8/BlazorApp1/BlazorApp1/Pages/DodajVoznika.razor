@@ -1,0 +1,57 @@
+﻿@page "/dodaj-voznika"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Dodaj Voznika</PageTitle>
+
+<h3>Dodaj novega voznika</h3>
+
+<EditForm Model="novVoznik" OnValidSubmit="DodajNovegaVoznika">
+    <DataAnnotationsValidator />
+    <Microsoft.AspNetCore.Components.Forms.ValidationSummary /> <!-- Default ASP.NET Core ValidationSummary -->
+    <Blazorise.ValidationSummary /> <!-- Blazorise ValidationSummary -->
+
+    <div class="mb-3">
+        <label for="ime" class="form-label">Ime</label>
+        <InputText id="ime" class="form-control" @bind-Value="novVoznik.Ime" />
+    </div>
+    <div class="mb-3">
+        <label for="priimek" class="form-label">Priimek</label>
+        <InputText id="priimek" class="form-control" @bind-Value="novVoznik.Priimek" />
+    </div>
+    <div class="mb-3">
+        <label for="letoRojstva" class="form-label">Leto Rojstva</label>
+        <InputNumber TValue="int" id="letoRojstva" class="form-control" @bind-Value="novVoznik.LetoRojstva" />
+    </div>
+    <button type="submit" class="btn btn-success">Dodaj</button>
+    <button type="button" class="btn btn-secondary ms-2" @onclick="Preklici">Prekliči</button>
+</EditForm>
+
+@code {
+    private Voznik novVoznik = new Voznik();
+
+    private async Task DodajNovegaVoznika()
+    {
+        var response = await Http.PostAsJsonAsync("api/voznik", novVoznik);
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/vozniki");
+        }
+        else
+        {
+            Console.WriteLine("Napaka pri dodajanju voznika.");
+        }
+    }
+
+    private void Preklici()
+    {
+        Navigation.NavigateTo("/vozniki");
+    }
+
+    public class Voznik
+    {
+        public string Ime { get; set; } = string.Empty;
+        public string Priimek { get; set; } = string.Empty;
+        public int LetoRojstva { get; set; }
+    }
+}

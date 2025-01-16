@@ -1,0 +1,68 @@
+﻿@page
+@model StatisticsModel
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<h2>Statistics</h2>
+
+<!-- Create New Statistic -->
+<h3>Create New Statistic</h3>
+<form method="post" asp-page-handler="Create">
+    <div class="form-group">
+        <label asp-for="Statistic.PlayerId"></label>
+        <input asp-for="Statistic.PlayerId" class="form-control" />
+        <span asp-validation-for="Statistic.PlayerId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Statistic.MatchId"></label>
+        <input asp-for="Statistic.MatchId" class="form-control" />
+        <span asp-validation-for="Statistic.MatchId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Statistic.Goals"></label>
+        <input asp-for="Statistic.Goals" class="form-control" />
+        <span asp-validation-for="Statistic.Goals" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Statistic.Assists"></label>
+        <input asp-for="Statistic.Assists" class="form-control" />
+        <span asp-validation-for="Statistic.Assists" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+
+<!-- List of Statistics -->
+<h3 class="mt-5">List of Statistics</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Player ID</th>
+            <th>Match ID</th>
+            <th>Goals</th>
+            <th>Assists</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var statistic in Model.Statistics)
+        {
+            <tr>
+                <td>@statistic.PlayerId</td>
+                <td>@statistic.MatchId</td>
+                <td>@statistic.Goals</td>
+                <td>@statistic.Assists</td>
+                <td>
+                    <form method="post" asp-page-handler="Delete">
+                        <input type="hidden" name="id" value="@statistic.StatisticId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

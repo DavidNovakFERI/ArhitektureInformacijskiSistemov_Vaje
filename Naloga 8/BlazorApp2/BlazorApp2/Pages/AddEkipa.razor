@@ -1,0 +1,54 @@
+﻿@page "/add-ekipa"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Dodaj novo ekipo</h3>
+
+<div class="form-group">
+    <label for="naziv">Naziv:</label>
+    <input type="text" id="naziv" @bind="novaEkipa.Naziv" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="drzava">Država:</label>
+    <input type="text" id="drzava" @bind="novaEkipa.Drzava" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="letoUstanovitve">Leto Ustanovitve:</label>
+    <input type="number" id="letoUstanovitve" @bind="novaEkipa.LetoUstanovitve" class="form-control" />
+</div>
+<button class="btn btn-success" @onclick="SaveEkipa">Shrani</button>
+<button class="btn btn-secondary" @onclick="Cancel">Prekliči</button>
+
+@code {
+    private Ekipa novaEkipa = new Ekipa();
+
+    private async Task SaveEkipa()
+    {
+        try
+        {
+            await Http.PostAsJsonAsync("api/ekipa", novaEkipa);
+            NavigationManager.NavigateTo("/ekipe");
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"HTTP napaka: {httpEx.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Splošna napaka: {ex.Message}");
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/ekipe");
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+        public string Drzava { get; set; }
+        public int LetoUstanovitve { get; set; }
+    }
+}

@@ -1,0 +1,104 @@
+﻿@page "/uredi-voznika-v-ekipi/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h3>Uredi voznika v ekipi</h3>
+
+@if (povezava == null)
+{
+    <p><em>Nalaganje...</em></p>
+}
+else
+{
+    <EditForm Model="povezava" OnValidSubmit="ShraniSpremembe">
+        <DataAnnotationsValidator />
+        <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+        <div class="mb-3">
+            <label for="voznikId" class="form-label">Voznik</label>
+            <InputNumber TValue="int" id="voznikId" class="form-control" @bind="povezava.VoznikId" />
+        </div>
+        <div class="mb-3">
+            <label for="ekipaId" class="form-label">Ekipa</label>
+            <InputNumber TValue="int" id="ekipaId" class="form-control" @bind="povezava.EkipaId" />
+        </div>
+        <div class="mb-3">
+            <label for="letoOd" class="form-label">Leto Od</label>
+            <InputNumber TValue="int" id="letoOd" class="form-control" @bind="povezava.LetoOd" />
+        </div>
+        <div class="mb-3">
+            <label for="letoDo" class="form-label">Leto Do</label>
+            <InputNumber TValue="int" id="letoDo" class="form-control" @bind="povezava.LetoDo" />
+        </div>
+        <div class="mb-3">
+            <label for="steviloZmag" class="form-label">Število Zmag</label>
+            <InputNumber TValue="int" id="steviloZmag" class="form-control" @bind="povezava.SteviloZmag" />
+        </div>
+        <button type="submit" class="btn btn-primary">Shrani</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private VoznikVEkipi povezava = new VoznikVEkipi();
+
+    protected override async Task OnInitializedAsync()
+    {
+        povezava = await Http.GetFromJsonAsync<VoznikVEkipi>($"api/VoznikVEkipi/{Id}");
+        if (povezava == null)
+        {
+            Console.WriteLine("Povezava ni bila najdena.");
+        }
+    }
+
+    private async Task ShraniSpremembe()
+    {
+        povezava.Voznik = await Http.GetFromJsonAsync<Voznik>($"api/Voznik/{povezava.VoznikId}");
+        povezava.Ekipa = await Http.GetFromJsonAsync<Ekipa>($"api/Ekipa/{povezava.EkipaId}");
+
+        if (string.IsNullOrEmpty(povezava.Ekipa.Drzava))
+        {
+            povezava.Ekipa.Drzava = "DefaultCountry"; // Replace with appropriate value
+        }
+
+        var response = await Http.PutAsJsonAsync($"api/VoznikVEkipi/{Id}", povezava);
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Spremembe so bile uspešno shranjene.");
+            Navigation.NavigateTo("/vozniki-v-ekipah");
+        }
+        else
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Napaka pri shranjevanju sprememb: {responseContent}");
+        }
+    }
+
+    public class VoznikVEkipi
+    {
+        public int Id { get; set; }
+        public int VoznikId { get; set; }
+        public int EkipaId { get; set; }
+        public int LetoOd { get; set; }
+        public int LetoDo { get; set; }
+        public int SteviloZmag { get; set; }
+        public Voznik Voznik { get; set; } = new Voznik();
+        public Ekipa Ekipa { get; set; } = new Ekipa();
+    }
+
+    public class Voznik
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Priimek { get; set; }
+    }
+
+    public class Ekipa
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+        public string Drzava { get; set; }
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "dKU7REp+vcep9hu+52v1AjLa26ozwWif8NpQ2NBIJvT9+DeJZj35cPZAX0nIyD/TpqBPBOHe5eljB3BsA5yiWA==",
+  "success": true,
+  "projectFilePath": "D:\\2LETNIK\\_AIS\\Naloga 6\\Vaja6\\Vaja6Console\\Vaja6Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\David\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\grpc.core.api\\2.59.0\\grpc.core.api.2.59.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\grpc.net.client\\2.59.0\\grpc.net.client.2.59.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\grpc.net.common\\2.59.0\\grpc.net.common.2.59.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\grpc.tools\\2.59.0\\grpc.tools.2.59.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

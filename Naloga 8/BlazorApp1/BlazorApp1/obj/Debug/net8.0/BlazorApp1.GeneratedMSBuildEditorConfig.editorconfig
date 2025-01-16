@@ -1,0 +1,79 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazorApp1
+build_property.RootNamespace = BlazorApp1
+build_property.ProjectDir = D:\2LETNIK\_AIS\Naloga 8\BlazorApp1\BlazorApp1\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\2LETNIK\_AIS\Naloga 8\BlazorApp1\BlazorApp1
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/DodajEkipo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9kYWpFa2lwby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/DodajVoznika.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9kYWpWb3puaWthLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/DodajVoznikaVEkipi.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9kYWpWb3puaWthVkVraXBpLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/Ekipe.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWtpcGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/UrediEkipo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXJlZGlFa2lwby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/UrediVoznika.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXJlZGlWb3puaWthLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/UrediVoznikaVEkipi.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXJlZGlWb3puaWthVkVraXBpLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/Vozniki.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm96bmlraS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Pages/VoznikiVEkipah.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm96bmlraVZFa2lwYWgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5383j6hyu8
+
+[D:/2LETNIK/_AIS/Naloga 8/BlazorApp1/BlazorApp1/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-da4la3n260
